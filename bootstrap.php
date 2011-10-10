@@ -1,20 +1,26 @@
 <?php
+namespace OpenMvc;
 
-	/**
-	 * Show Warnings & Errors if DEV_MODE define was set to (bool) TRUE
-	 */
-	defined('DEV_MODE') or define('DEV_MODE', 0);
-	error_reporting(DEV_MODE ? E_ALL & E_STRICT : 0);
-	ini_set('display_errors', DEV_MODE ? 1 : 0);
+/**
+ * Show Warnings & Errors if DEV_MODE define was set to (bool) TRUE
+ */
+defined('DEV_MODE') or define('DEV_MODE', 0);
+error_reporting(DEV_MODE ? E_ALL & E_STRICT : 0);
+ini_set('display_errors', DEV_MODE ? 1 : 0);
 	
-	/*** Set Error Codes ***/
-	define('ERRORCODE_TECHNICAL_DIFFICULTIES', 1001);
+/*** Set Error Codes ***/
+define('ERRORCODE_TECHNICAL_DIFFICULTIES', 1001);
+
+/**
+ * Define "/" (UNIX) or "\" (WINDOWS) as DS 
+ */
+define( __NAMESPACE__ . '\\DS', DIRECTORY_SEPARATOR);
 
 	/*** Include Logger Class ***/
-	include_once (CORE_PATH . 'logger.class.php');
+//	include_once (CORE_PATH . 'logger.class.php');
 	/*** Initialize Core Object (that manages all child objects/classes) ***/
-	include_once (OPENMVC_SYSTEM_PATH . 'core.class.php');
-	$Core = new Core;
+//	include_once (OPENMVC_SYSTEM_PATH . 'core.class.php');
+//	$Core = new Core;
 	
 
 			/*** Each time a new lib class is instantiated/called - include_once it's source file ***/
@@ -46,11 +52,12 @@
 	try {
 	
 		/*** Using "Router" try to set "View" components and run proper "Controller" that will prepare and run output ***/
-		Router::loader();
+//		Router::loader();
+		echo 'loaded';
 	
 	} catch (Exception $e) {
 		
 		/*** Some other error - load Error Controller, Error Layout and Content according to ErrorCode ***/
-		$Core->Router->loadError();
+//		$Core->Router->loadError();
 		
 	}
